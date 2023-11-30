@@ -11,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = os.getenv('DEBUG')
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+DOMAIN_NAME = 'http://127.0.0.1:8000'
 
 
 # Stripe credentials
@@ -98,7 +99,6 @@ STATIC_URL = '/static/'
 if DEBUG:
     STATICFILES_DIRS = (BASE_DIR / 'static',)
 else:
-    # STATIC_ROOT = BASE_DIR / 'static'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
