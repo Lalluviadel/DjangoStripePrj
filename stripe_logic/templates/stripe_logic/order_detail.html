@@ -1,0 +1,62 @@
+{% extends 'stripe_logic/base.html' %}
+
+{% block content %}
+    <div class="order" style="text-align: center">
+        <div class="item-info">
+            <h1>{{ order }}</h1>
+            <h6>Дата создания: {{ order.created }}</h6>
+            <h6>Дата обновления: {{ order.updated }}</h6>
+            <br>
+            <h2>Товары:</h2>
+            {% for item in order.get_items %}
+                <p>
+                    {{ item.name }} - {{ item.get_price }} руб. -
+                    {{ item.quantity }} шт. - Сумма: {{ item.get_cost }}
+                </p>
+            {% endfor %}
+            <h5>Статус: {{ order.status }}</h5>
+            <h4>Общая сумма: {{ order.get_total_cost }}</h4>
+            <h5>Общее количество: {{ order.get_total_quantity }}</h5>
+        </div>
+    </div>
+    <button type="button"
+            style="margin: 0 auto; display: block;
+                width: 100px; height: 50px; font-size: 20px;"
+            id="buy-button">
+        Оплатить
+    </button>
+{% endblock %}
+
+{% block scripts %}
+    {% csrf_token %}
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript">
+
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        let stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+        let buyButton = document.getElementById('buy-button');
+        buyButton.addEventListener('click', function () {
+            fetch("{% url 'buy_order' order.id %}", {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (session) {
+                    return stripe.redirectToCheckout({sessionId: session.id});
+                })
+                .then(function (result) {
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+{% endblock %}
