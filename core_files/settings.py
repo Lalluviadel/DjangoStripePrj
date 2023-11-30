@@ -17,6 +17,7 @@ DOMAIN_NAME = 'http://127.0.0.1:8000'
 # Stripe credentials
 STRIPE_SECRET_KEY = str(os.getenv('STRIPE_PRIVATE_KEY'))
 STRIPE_PUBLIC_KEY = str(os.getenv('STRIPE_PUBLIC_KEY'))
+STRIPE_ENDPOINT_SECRET = str(os.getenv('STRIPE_ENDPOINT_SECRET'))
 
 
 # Application definition
