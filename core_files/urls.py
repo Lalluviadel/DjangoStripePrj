@@ -1,10 +1,12 @@
+"""Project urls."""
 from django.contrib import admin
 from django.urls import path
+
 from stripe_logic.views import (
-    BuyItemView,
-    CancelView,
-    ItemView,
-    SuccessView, BuyOrderView, OrderView, WebhookView,
+    BuyItemView, BuyOrderView,
+    CancelView, ItemView,
+    OrderView, SuccessView,
+    WebhookView
 )
 
 urlpatterns = [

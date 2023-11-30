@@ -1,6 +1,6 @@
 .idea
-.env
-.env.*
+#.env
+#.env.*
 *.sqlite3
 *.log
-
+.flake

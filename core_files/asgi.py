@@ -1,6 +1,4 @@
-"""
-ASGI config for DjangoStripePrj project.
-"""
+"""ASGI config for DjangoStripePrj project."""
 
 import os
 
