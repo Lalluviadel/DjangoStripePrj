@@ -1,8 +1,7 @@
-"""
-Django settings for DjangoStripePrj project.
-"""
+"""Django settings for DjangoStripePrj project."""
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -74,16 +73,20 @@ DATABASES = {
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'MinimumLengthValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'CommonPasswordValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+                 'NumericPasswordValidator'),
     },
 ]
 
@@ -118,7 +121,7 @@ LOGGING = {
         'file': {
             'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
         },
-        "rich": {"datefmt": "[%X]"}
+        'rich': {'datefmt': '[%X]'}
     },
     'handlers': {
         'file': {
