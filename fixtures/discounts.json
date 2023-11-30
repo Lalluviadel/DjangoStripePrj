@@ -1,0 +1,1 @@
+[{"model": "stripe_logic.discount", "pk": 1, "fields": {"name": "Для пенсионеров", "value": 30}}, {"model": "stripe_logic.discount", "pk": 2, "fields": {"name": "Для студентов", "value": 10}}]

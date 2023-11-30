@@ -1,4 +1,23 @@
+from django.core.validators import MaxValueValidator
 from django.db import models
+
+
+class Discount(models.Model):
+    name = models.CharField(max_length=64, verbose_name='наименование',)
+    value = models.PositiveIntegerField(verbose_name='размер скидки', default=10,
+                                        validators=[MaxValueValidator(90),])
+
+    def __str__(self):
+        return f'{self.name} - {self.value}'
+
+
+class Tax(models.Model):
+    name = models.CharField(max_length=64, verbose_name='наименование',)
+    value = models.PositiveIntegerField(verbose_name='размер налога', default=10,
+                                        validators=[MaxValueValidator(50),])
+
+    def __str__(self):
+        return f'{self.name} - {self.value}'
 
 
 class Order(models.Model):
@@ -15,9 +34,11 @@ class Order(models.Model):
     created = models.DateTimeField(verbose_name='создан', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='обновлен', auto_now=True)
     status = models.CharField(choices=ORDER_STATUS_CHOICES, verbose_name='статус', max_length=3, default=PROCEEDED)
+    discount = models.ForeignKey(Discount, blank=True, null=True, verbose_name='Скидка', on_delete=models.CASCADE)
+    tax = models.ForeignKey(Tax, blank=True, null=True, verbose_name='Налог', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Заказ № {self.pk}'
+        return f'Заказ № {self.pk} {self.status}'
 
     def get_total_quantity(self):
         items = self.orderitems.select_related()
