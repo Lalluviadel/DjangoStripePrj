@@ -23,6 +23,9 @@
 работоспособности. В админ-панели доступны для взаимодйствия
 сущности Item, Discount, Tax, Order.
 
+![Example Screen Shot](https://github.com/Lalluviadel/DjangoStripePrj/blob/master/public/example.png?raw=true)
+
+
 ### Usage
 <p><a name="usage"></a></p>
 
@@ -36,6 +39,18 @@ python manage.py fill_db
 
 ```
 python manage.py runserver
+```
+
+Эндпойнты для тестирования приложения:
+
+```
+http://127.0.0.1:8000/item/1/
+http://127.0.0.1:8000/item/2/
+...
+http://127.0.0.1:8000/item/6/
+
+http://127.0.0.1:8000/order/1/
+http://127.0.0.1:8000/order/2/
 ```
 
 ### Built With

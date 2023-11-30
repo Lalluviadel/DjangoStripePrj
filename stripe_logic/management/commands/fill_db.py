@@ -51,10 +51,10 @@ class Command(BaseCommand):
         for order in orders:
             raw_order_data = order.get('fields')
             raw_order_data['id'] = order.get('pk')
-            if order.get('tax'):
+            if raw_order_data.get('tax'):
                 _tax = Tax.objects.get(id=raw_order_data.get('tax'))
                 raw_order_data['tax'] = _tax
-            if order.get('discount'):
+            if raw_order_data.get('discount'):
                 _discount = Discount.objects.get(
                     id=raw_order_data.get('discount')
                 )
