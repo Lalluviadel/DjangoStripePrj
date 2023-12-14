@@ -1,6 +1,7 @@
 .idea
-#.env
+.env
 #.env.*
 *.sqlite3
 *.log
 .flake
+local.py
